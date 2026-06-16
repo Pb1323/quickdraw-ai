@@ -1,0 +1,12 @@
+{
+  "train_per_class": 4000,
+  "val_per_class": 500,
+  "test_per_class": 500,
+  "batch_size": 128,
+  "epochs": 20,
+  "patience": 4,
+  "lr": 0.001,
+  "seed": 42,
+  "num_workers": 0,
+  "device": "auto"
+}

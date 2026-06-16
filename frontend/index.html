@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>InkVision AI</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="bg-shape shape-a"></div>
+  <div class="bg-shape shape-b"></div>
+
+  <div class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Real-time AI Sketch Recognition</p>
+        <h1>InkVision AI</h1>
+        <p class="sub">
+          Draw anything on the canvas and watch a PyTorch CNN predict what it is in real time across 20 sketch categories.
+        </p>
+      </div>
+
+      <div class="watermark" id="watermarkBox">
+        <div class="wm-title">System Info</div>
+        <div id="wmId">Model: InkVision CNN (20 classes)</div>
+        <div id="wmName">Stack: FastAPI · PyTorch · Vanilla JS Canvas</div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel draw-panel">
+        <div class="panel-head">
+          <h2>Drawing Board</h2>
+          <p>Pointer events support touch and mouse, tuned for mobile browsers.</p>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="drawCanvas" width="280" height="280" aria-label="drawing canvas"></canvas>
+        </div>
+
+        <div class="toolbar">
+          <button class="btn btn-solid" id="toolBrush">Brush</button>
+          <button class="btn" id="toolEraser">Eraser</button>
+          <label class="control">
+            <span>Width</span>
+            <input id="lineWidth" type="range" min="4" max="28" step="1" value="12" />
+          </label>
+          <label class="control">
+            <span>Color</span>
+            <input id="lineColor" type="color" value="#111111" />
+          </label>
+        </div>
+
+        <div class="toolbar second-row">
+          <button class="btn" id="clearBtn">Clear</button>
+          <button class="btn" id="exportBtn">Export Failure Sample</button>
+        </div>
+
+        <div class="hint">
+          Tip: draw one object near the center with clear strokes for better prediction.
+        </div>
+      </section>
+
+      <section class="panel result-panel">
+        <div class="panel-head">
+          <div class="head-row">
+            <h2>AI Guesser</h2>
+            <div class="model-status" id="modelStatusWrap">
+              <span class="status-dot status-off" id="modelStatusDot"></span>
+              <span id="modelStatusText">Model not loaded</span>
+            </div>
+          </div>
+          <p id="statusText">Waiting for your first stroke...</p>
+        </div>
+
+        <div class="robot-zone">
+          <div class="robot" id="robotFace" aria-hidden="true">
+            <div class="eyes">
+              <span></span><span></span>
+            </div>
+          </div>
+          <div class="bubble" id="robotBubble">I am ready to guess.</div>
+        </div>
+
+        <div class="best-card" id="bestCard">
+          <div class="best-label">Top-1 Guess</div>
+          <div class="best-value" id="bestGuess">-</div>
+          <div class="best-meta" id="latencyText">Latency: - ms</div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-label">Latency Statistics</div>
+          <div class="stats-grid">
+            <div class="stat-cell">
+              <div class="stat-name">Average</div>
+              <div class="stat-value" id="latencyAvg">- ms</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-name">Maximum</div>
+              <div class="stat-value" id="latencyMax">- ms</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-title">Top-5 Probability Board</div>
+          <div id="rankList" class="rank-list"></div>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-title">Prediction Timeline (Latest 10)</div>
+          <div id="historyList" class="history-list"></div>
+        </div>
+
+        <div class="class-card">
+          <div class="rank-title">Current Dataset Classes</div>
+          <div id="classChips" class="chips"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+
+  
+</body>
+</html>

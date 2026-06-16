@@ -1,0 +1,27 @@
+{
+  "best_val_acc": 0.9065,
+  "test_acc": 0.9076,
+  "per_class_recall": {
+    "apple": 0.956,
+    "banana": 0.782,
+    "bicycle": 0.93,
+    "bird": 0.796,
+    "book": 0.966,
+    "bus": 0.934,
+    "car": 0.892,
+    "cat": 0.892,
+    "cloud": 0.904,
+    "fish": 0.93,
+    "house": 0.97,
+    "key": 0.922,
+    "lightning": 0.84,
+    "moon": 0.858,
+    "mushroom": 0.9,
+    "star": 0.932,
+    "sun": 0.954,
+    "tree": 0.906,
+    "umbrella": 0.938,
+    "clock": 0.95
+  },
+  "mean_inference_latency_ms": 0.12054264545440674
+}
